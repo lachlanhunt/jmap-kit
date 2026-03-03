@@ -1,0 +1,7 @@
+.husky/
+.vscode/
+.yarn/
+docs/
+
+.pnp.cjs
+.pnp.loader.mjs

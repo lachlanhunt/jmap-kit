@@ -1,0 +1,41 @@
+{
+    "include": [
+        "*.ts",
+        "src/**/*.ts",
+        "examples/**/*.ts",
+        "eslint.config.mjs",
+        "vitest.config.ts",
+        "test/**/*.ts",
+        "rollup.config.*",
+        "tsconfig.rollup.json"
+    ],
+    "exclude": ["**/dist/**/*"],
+    "compilerOptions": {
+        /* Base Options: */
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "target": "ES2024",
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "moduleDetection": "force",
+        "isolatedModules": true,
+        /* Strictness */
+        "strict": true,
+        // This needs to be false for compatibility with Zod's `z.optional()`
+        // that allows explicit `undefined` as a value.
+        "exactOptionalPropertyTypes": false,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        /* Transpiling with TypeScript: */
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext",
+        "outDir": "dist",
+        "sourceMap": true,
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        // Include the .d.ts files for the library
+        "declaration": true,
+        "types": ["vitest/globals", "node"]
+    }
+}

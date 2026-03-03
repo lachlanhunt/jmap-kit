@@ -1,0 +1,43 @@
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+.pnp.*
+
+node_modules
+
+# Generated Files
+dist/
+coverage/
+docs/
+bundle-analysis.html
+
+# Other files
+.env
+.worktrees
+specifications/
+
+# AI agent data
+.claude/
+CLAUDE.md
+.github/copilot-instructions.md
+.cursor/
+.cursorrules
+.windsurf/
+.windsurfrules
+.cline/
+.clinerules
+.aider*
+.gemini/
+.junie/
+.roo/
+.roorules*
+.augment*
+.cody/
+AGENTS.md
+.playwright-mcp/
+**/mcp.json

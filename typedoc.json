@@ -1,0 +1,12 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": ["./src"],
+    "entryPointStrategy": "expand",
+    "tsconfig": "./tsconfig.build.json",
+    "exclude": ["**/*.test.ts", "**/*.typetest.ts", "src/index.ts"],
+    "out": "docs/api",
+    "readme": "README.md",
+    "customCss": "./typedoc-custom.css",
+    "projectDocuments": ["guide/README.md", "examples/README.md", "CONTRIBUTING.md"],
+    "sortEntryPoints": false
+}

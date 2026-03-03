@@ -1,0 +1,12 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.sortImports": "always"
+  },
+  "search.exclude": {
+    "**/.yarn": true
+  },
+  "typescript.format.enable": false,
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "cSpell.language": "en,en-GB"
+}

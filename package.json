@@ -1,0 +1,90 @@
+{
+    "name": "jmap-kit",
+    "version": "0.1.0",
+    "packageManager": "yarn@4.13.0",
+    "author": "Lachlan Hunt <lachlan.hunt@lachy.id.au> (https://lachy.id.au)",
+    "description": "A comprehensive, type-safe JMAP SDK for building JMAP-based applications",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lachlanhunt/jmap-kit.git"
+    },
+    "homepage": "https://github.com/lachlanhunt/jmap-kit#readme",
+    "bugs": {
+        "url": "https://github.com/lachlanhunt/jmap-kit/issues"
+    },
+    "keywords": [
+        "jmap",
+        "email",
+        "rfc8620",
+        "rfc8621",
+        "typescript",
+        "client"
+    ],
+    "scripts": {
+        "postinstall": "husky install",
+        "prepack": "pinst --disable && yarn build",
+        "postpack": "pinst --enable",
+        "format:check": "prettier --check .",
+        "lint": "eslint .",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "typecheck": "tsc --noEmit",
+        "build": "tsc --project tsconfig.build.json",
+        "bundle": "rollup -c",
+        "bundle:standalone": "rollup -c rollup.config.standalone.js",
+        "bundle:analyse": "NODE_ENV=production rollup -c",
+        "size-check": "yarn bundle && ls -lh dist/jmap-kit.bundle.js",
+        "docs": "typedoc"
+    },
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/src/index.d.ts",
+            "default": "./dist/src/index.js"
+        }
+    },
+    "sideEffects": false,
+    "main": "./dist/src/index.js",
+    "types": "./dist/src/index.d.ts",
+    "files": [
+        "dist/src/**"
+    ],
+    "dependencies": {
+        "@standard-schema/spec": "^1.1.0",
+        "p-limit": "^7.3.0",
+        "url-template": "^3.1.1",
+        "zod": "^4.3.6"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.3",
+        "@rollup/plugin-node-resolve": "^16.0.3",
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^12.3.0",
+        "@types/node": "^24.10.13",
+        "@vitest/coverage-v8": "^4.0.18",
+        "@vitest/runner": "^4.0.18",
+        "@vitest/snapshot": "^4.0.18",
+        "dotenv": "^17.3.1",
+        "eslint": "^9.39.3",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-import-resolver-typescript": "^4.4.4",
+        "eslint-plugin-import": "^2.32.0",
+        "globals": "^16.5.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
+        "pinst": "^3.0.0",
+        "prettier": "3.8.1",
+        "rollup": "^4.59.0",
+        "rollup-plugin-visualizer": "^7.0.0",
+        "tsx": "^4.21.0",
+        "typedoc": "^0.28.15",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.56.1",
+        "vitest": "^4.0.18"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,mjs}": "eslint --fix",
+        "**/*": "prettier --write --ignore-unknown"
+    }
+}

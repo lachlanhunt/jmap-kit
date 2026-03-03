@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+        "src/**/*.typetest.ts",
+        "src/**/*.test.ts",
+        "*.ts",
+        "*.mjs",
+        "rollup.config.*",
+        "eslint.config.*",
+        "vitest.config.*",
+        "tsconfig.rollup.json"
+    ]
+}
