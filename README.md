@@ -108,6 +108,35 @@ yarn install
 
 Contributions are welcome! See the [Contributing Guide](CONTRIBUTING.md) for development setup, conventions, and PR guidelines.
 
+## Roadmap
+
+jmap-kit currently implements the JMAP Core (RFC 8620), Mail (RFC 8621), and Blob Management (RFC 9404) specifications, plus the FastMail Masked Email extension. The following features are planned for future minor releases.
+
+### Core specification features
+
+- **PushSubscription** (RFC 8620 Section 7.2) — `PushSubscription/get` and `PushSubscription/set` methods for managing push notification subscriptions
+- **EventSource** (RFC 8620 Section 7.3) — built-in client for server-sent events, including connection management and automatic reconnection (URL generation via `getEventSourceUrl()` is already available)
+
+### Additional JMAP capabilities
+
+Support for capabilities defined in other published and draft JMAP specifications is planned, including:
+
+- **Quotas** — [RFC 9425](https://www.rfc-editor.org/rfc/rfc9425.html)
+- **Contacts** — [RFC 9610](https://www.rfc-editor.org/rfc/rfc9610.html)
+- **Sieve Scripts** — [RFC 9661](https://www.rfc-editor.org/rfc/rfc9661.html)
+- **Principals and Sharing** — [RFC 9670](https://www.rfc-editor.org/rfc/rfc9670.html)
+- **MDN (Message Disposition Notification)** — [RFC 9007](https://www.rfc-editor.org/rfc/rfc9007.html)
+- **S/MIME Signature Verification** — [RFC 9219](https://www.rfc-editor.org/rfc/rfc9219.html)
+- **WebPush VAPID** — [RFC 9749](https://www.rfc-editor.org/rfc/rfc9749.html)
+- **Calendars** — [Draft IETF JMAP Calendars](https://datatracker.ietf.org/doc/html/draft-ietf-jmap-calendars)
+- **Tasks** — [Draft IETF JMAP Tasks](https://datatracker.ietf.org/doc/html/draft-ietf-jmap-tasks)
+
+Any of the above capabilities can be implemented as [custom capabilities](./guide/custom-capabilities.md) using the plugin system. Contributions are welcome!
+
+### Other specifications
+
+- **JMAP over WebSocket** — [RFC 8887](https://www.rfc-editor.org/rfc/rfc8887.html).
+
 ## License
 
 [MIT License](LICENSE)
