@@ -1,6 +1,5 @@
 import type { CapabilityDefinition, ValidationPlugin } from "../capability-registry/types.js";
 import { VACATIONRESPONSE_CAPABILITY_URI } from "../common/registry.js";
-import type { EmptyObject } from "../common/types.js";
 import { VacationResponse } from "./vacationresponse/vacationresponse.js";
 
 /**

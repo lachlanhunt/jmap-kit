@@ -1,10 +1,14 @@
 import { z } from "zod/v4";
 import type { CapabilityDefinition, ValidationPlugin } from "../capability-registry/types.js";
 import { BLOB_CAPABILITY_URI } from "../common/registry.js";
-import type { EmptyObject, HTTPDigestAlgorithmValues, JMAPDataType, UnsignedInt } from "../common/types.js";
-import { HTTPDigestAlgorithmValuesEnum } from "../common/types.js";
 import { Blob } from "./blob/blob.js";
-import type { BlobCopyRequestInvocationArgs, BlobUploadRequestInvocationArgs, DataSourceObject } from "./blob/types.js";
+import type {
+    BlobCopyRequestInvocationArgs,
+    BlobUploadRequestInvocationArgs,
+    DataSourceObject,
+    HTTPDigestAlgorithm,
+} from "./blob/types.js";
+import { HTTPDigestAlgorithmSchema } from "./blob/types.js";
 import { assertInvocation } from "./utils/assert-invocation.js";
 import { createReadOnlyAccountValidator } from "./utils/create-readonly-account-validator.js";
 
@@ -284,7 +288,7 @@ const blobAccountCapabilitySchema = z.looseObject({
     maxSizeBlobSet: z.number().int().min(0).nullable(),
     maxDataSources: z.number().int().min(1),
     supportedTypeNames: z.array(z.string()),
-    supportedDigestAlgorithms: z.array(HTTPDigestAlgorithmValuesEnum),
+    supportedDigestAlgorithms: z.array(HTTPDigestAlgorithmSchema),
 });
 
 /**
@@ -354,7 +358,7 @@ declare module "../common/types.js" {
              * lowercased, e.g., "md5" rather than "MD5".Clients SHOULD prefer algorithms listed earlier
              * in this list.
              */
-            supportedDigestAlgorithms: HTTPDigestAlgorithmValues[];
+            supportedDigestAlgorithms: HTTPDigestAlgorithm[];
         };
     }
 }

@@ -1,7 +1,6 @@
 import { z } from "zod/v4";
 import type { CapabilityDefinition, ValidationPlugin } from "../capability-registry/types.js";
 import { CORE_CAPABILITY_URI } from "../common/registry.js";
-import type { EmptyObject, UnsignedInt } from "../common/types.js";
 import type {
     BaseFilterCondition,
     BaseGetRequestInvocationArgs,

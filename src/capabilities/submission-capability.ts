@@ -1,7 +1,6 @@
 import { z } from "zod/v4";
 import type { CapabilityDefinition, ValidationPlugin } from "../capability-registry/types.js";
 import { SUBMISSION_CAPABILITY_URI } from "../common/registry.js";
-import type { EmptyObject, UnsignedInt } from "../common/types.js";
 import { EmailSubmission } from "./emailsubmission/emailsubmission.js";
 import { Identity } from "./identity/identity.js";
 

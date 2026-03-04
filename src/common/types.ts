@@ -118,25 +118,6 @@ export type TZDate = string & {}; // NOSONAR
  */
 export type UTCDate = string & {}; // NOSONAR
 
-// Zod enum for HTTPDigestAlgorithmValues
-export const HTTPDigestAlgorithmValuesEnum = z.enum([
-    "adler32",
-    "crc32c",
-    "md5",
-    "sha",
-    "sha-256",
-    "sha-512",
-    "unixsum",
-    "unixcksum",
-]);
-
-/**
- * The list of algorithms defined in the
- * {@link https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml IANA HTTP Digest Algorithm Values registry}
- * that the server supports for calculating blob digests.
- */
-export type HTTPDigestAlgorithmValues = z.infer<typeof HTTPDigestAlgorithmValuesEnum>;
-
 /**
  * The list of data types defined in various JMAP specifications, including the core specification and extensions.
  * This is not an exhaustive list of all possible data types, as servers may support additional private data types as well.

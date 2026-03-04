@@ -28,6 +28,7 @@
         "noImplicitReturns": true,
         "noPropertyAccessFromIndexSignature": true,
         "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
         /* Transpiling with TypeScript: */
         "moduleResolution": "NodeNext",
         "module": "NodeNext",

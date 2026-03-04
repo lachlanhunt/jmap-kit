@@ -5,6 +5,8 @@
 
 A typed TypeScript library for building [JMAP](https://jmap.io/) clients. It handles session discovery, request building with type-safe invocation factories, response dispatching, file operations, and a plugin system for validation and transformation — so you can focus on your application instead of the protocol.
 
+See the complete [jmap-kit Documentation](https://lachlanhunt.github.io/jmap-kit/).
+
 ## Using jmap-kit
 
 ### Features

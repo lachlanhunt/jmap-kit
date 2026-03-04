@@ -1,6 +1,5 @@
 import type { CapabilityDefinition, ValidationPlugin } from "../capability-registry/types.js";
 import { MASKED_EMAIL_CAPABILITY_URI } from "../common/registry.js";
-import type { EmptyObject } from "../common/types.js";
 import { MaskedEmail } from "./maskedemail/maskedemail.js";
 import type { MaskedEmailObjectSettable, MaskedEmailSetRequestInvocationArgs } from "./maskedemail/types.js";
 import { assertInvocation } from "./utils/assert-invocation.js";

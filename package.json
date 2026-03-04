@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "packageManager": "yarn@4.13.0",
     "author": "Lachlan Hunt <lachlan.hunt@lachy.id.au> (https://lachy.id.au)",
-    "description": "A comprehensive, type-safe JMAP SDK for building JMAP-based applications",
+    "description": "A comprehensive, type-safe JMAP SDK for building JMAP-based client applications",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -48,7 +48,10 @@
     "main": "./dist/src/index.js",
     "types": "./dist/src/index.d.ts",
     "files": [
-        "dist/src/**"
+        "dist/src/**",
+        "!dist/src/**/*.test.*",
+        "!dist/src/**/*.typestest.*",
+        "!dist/src/**/test-utils.*"
     ],
     "dependencies": {
         "@standard-schema/spec": "^1.1.0",

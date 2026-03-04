@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 import type { CapabilityDefinition, ValidationPlugin } from "../../src/capability-registry/types.js";
-import type { EmptyObject, JMAPCapability, JMAPMethodName } from "../../src/index.js";
+import type { JMAPCapability, JMAPMethodName } from "../../src/index.js";
 import { Invocation } from "../../src/index.js";
 import type {
     BaseGetRequestInvocationArgs,

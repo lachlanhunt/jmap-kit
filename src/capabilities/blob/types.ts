@@ -1,5 +1,28 @@
-import type { HTTPDigestAlgorithmValues, Id, UnsignedInt } from "../../common/types.js";
+import { z } from "zod/v4";
+import type { Id, UnsignedInt } from "../../common/types.js";
 import type { BaseGetRequestInvocationArgs, BaseGetResponseInvocationArgs, SetError } from "../../invocation/types.js";
+
+/**
+ * Zod schema for validating HTTP Digest Algorithm values from the
+ * {@link https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml IANA HTTP Digest Algorithm Values registry}.
+ */
+export const HTTPDigestAlgorithmSchema = z.enum([
+    "adler32",
+    "crc32c",
+    "md5",
+    "sha",
+    "sha-256",
+    "sha-512",
+    "unixsum",
+    "unixcksum",
+]);
+
+/**
+ * The list of algorithms defined in the
+ * {@link https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml IANA HTTP Digest Algorithm Values registry}
+ * that the server supports for calculating blob digests.
+ */
+export type HTTPDigestAlgorithm = z.infer<typeof HTTPDigestAlgorithmSchema>;
 
 /**
  * Specifies the encoding format for blob data (text or base64)
@@ -9,7 +32,7 @@ export type BlobDataFormat = "asText" | "asBase64";
 /**
  * Partial record of digest values for a blob, keyed by digest algorithm
  */
-export type BlobObjectDigest = Partial<Record<`digest:${HTTPDigestAlgorithmValues}`, string>>;
+export type BlobObjectDigest = Partial<Record<`digest:${HTTPDigestAlgorithm}`, string>>;
 
 /**
  * Partial record of blob data in various formats (raw data, asText, or asBase64)
