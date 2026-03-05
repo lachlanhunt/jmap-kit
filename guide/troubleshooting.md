@@ -247,11 +247,20 @@ try {
 
 ### [warn] "JMAP Server session state has changed"
 
-**Symptom:** A warning is logged saying "JMAP Server session state has changed; client may be out of sync. Reconnection recommended." The `session-stale` event fires with `oldSessionState` and `newSessionState`.
+**Symptom:** A warning is logged saying "JMAP Server session state has changed; client may be out of sync. Reconnection recommended." or "JMAP Server session state has changed; reconnecting automatically." The `session-stale` event fires with `oldSessionState` and `newSessionState`.
 
 **Cause:** The server's `sessionState` in an API response differs from the state received during `connect()`. This means server-side changes have occurred — accounts may have been added or removed, capabilities may have changed, or URLs may have been updated.
 
-**Fix:** Reconnect to refresh the session:
+**Fix:** Enable automatic reconnection to handle this transparently:
+
+```typescript
+const client = new JMAPClient(transport, {
+    hostname: "api.example.com",
+    autoReconnect: true,
+});
+```
+
+Alternatively, handle it manually via the event emitter:
 
 ```typescript
 client.withEmitter((name, payload) => {
@@ -260,6 +269,8 @@ client.withEmitter((name, payload) => {
     }
 });
 ```
+
+See [Session — Automatic reconnection](session.md#automatic-reconnection) for details.
 
 ## File operation errors
 

@@ -79,6 +79,9 @@ export interface JMAPClientInterface<T> {
     /** Set a custom event emitter for the client */
     withEmitter(emitter: EventEmitterFn): this;
 
+    /** Enable or disable automatic reconnection when session staleness is detected */
+    withAutoReconnect(enabled?: boolean): this;
+
     /** Register new capabilities with the client */
     registerCapabilities(...capabilities: CapabilityDefinition[]): Promise<CapabilityRegistrationResult>;
 
@@ -109,6 +112,7 @@ export type JMAPClientOptions = Partial<ClientContext> & {
     hostname?: string;
     port?: number;
     headers?: Headers | Record<string, string>;
+    autoReconnect?: boolean;
 };
 
 export type ConnectionStatus = "disconnected" | "connecting" | "connected" | "disconnecting";

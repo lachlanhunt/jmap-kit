@@ -72,6 +72,7 @@ export class JMAPClient implements JMAPClientInterface<RequestBuilder> {
     #session: JMAPSession | null = null;
     #sessionState: JMAPSession["state"] | null = null;
     #_connectionStatus: ConnectionStatus = "disconnected";
+    #autoReconnect = false;
 
     // Capability registry
     readonly #capabilityRegistry: CapabilityRegistry;
@@ -136,13 +137,17 @@ export class JMAPClient implements JMAPClientInterface<RequestBuilder> {
      * @param transport The transport implementation for HTTP requests, including authentication.
      * @param options JMAP client options including hostname, port, headers, logger, and emitter.
      */
-    constructor(transport: Transport, { hostname, port = 443, headers, logger, emitter }: JMAPClientOptions) {
+    constructor(
+        transport: Transport,
+        { hostname, port = 443, headers, logger, emitter, autoReconnect }: JMAPClientOptions,
+    ) {
         // Wrap the transport so all requests and abort controllers are tracked
         this.#transport = createTransport(transport, this.#activeRequests, this.#activeAbortControllers);
         this.#currentLogger = logger;
         this.#currentEmitter = emitter;
         this.#hostname = hostname ?? null;
         this.#port = port;
+        this.#autoReconnect = autoReconnect ?? false;
         // Convert headers to Headers object if needed
         this.#requestHeaders = new Headers(headers ?? {});
         const clientContext: ClientContext = {
@@ -322,6 +327,24 @@ export class JMAPClient implements JMAPClientInterface<RequestBuilder> {
      */
     withEmitter(emitter: EventEmitterFn) {
         this.#currentEmitter = emitter;
+        return this;
+    }
+
+    /**
+     * Enable or disable automatic reconnection when session staleness is detected.
+     *
+     * When enabled, the client will automatically call `connect()` to refresh the session
+     * whenever a JMAP API response indicates the session state has changed. The current
+     * request's response is still returned normally. New requests arriving during
+     * reconnection will queue and wait for the fresh session.
+     *
+     * This can be called at any time, regardless of connection status.
+     *
+     * @param enabled Whether to enable auto-reconnect. Defaults to `true`.
+     * @returns This client instance (for chaining).
+     */
+    withAutoReconnect(enabled = true) {
+        this.#autoReconnect = enabled;
         return this;
     }
 
@@ -899,14 +922,24 @@ export class JMAPClient implements JMAPClientInterface<RequestBuilder> {
 
             this.#logger.info("API response received, checking session state");
             if (this.#sessionState !== result.sessionState) {
-                this.#logger.warn(
-                    "JMAP Server session state has changed; client may be out of sync. Reconnection recommended.",
-                );
+                if (this.#autoReconnect) {
+                    this.#logger.warn("JMAP Server session state has changed; reconnecting automatically.");
+                } else {
+                    this.#logger.warn(
+                        "JMAP Server session state has changed; client may be out of sync. Reconnection recommended.",
+                    );
+                }
 
                 this.#emitter("session-stale", {
                     oldSessionState: this.#sessionState,
                     newSessionState: result.sessionState,
                 });
+
+                if (this.#autoReconnect) {
+                    this.connect().catch((error: unknown) => {
+                        this.#logger.error("Automatic reconnection failed", { error });
+                    });
+                }
             } else {
                 this.#logger.debug("JMAP Server session state is unchanged");
             }
