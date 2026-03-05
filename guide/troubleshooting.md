@@ -256,7 +256,7 @@ try {
 ```typescript
 client.withEmitter((name, payload) => {
     if (name === "session-stale") {
-        client.disconnect().then(() => client.connect());
+        client.connect();
     }
 });
 ```
