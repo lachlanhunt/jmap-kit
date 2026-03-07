@@ -1,6 +1,6 @@
 {
     "name": "jmap-kit",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "packageManager": "yarn@4.13.0",
     "author": "Lachlan Hunt <lachlan.hunt@lachy.id.au> (https://lachy.id.au)",
     "description": "A comprehensive, type-safe JMAP SDK for building JMAP-based client applications",
