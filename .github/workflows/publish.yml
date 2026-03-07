@@ -10,7 +10,8 @@ jobs:
         permissions:
             contents: read
             id-token: write
-
+        env:
+            HUSKY: 0
         steps:
             - uses: actions/checkout@v4
 
@@ -42,8 +43,8 @@ jobs:
             - name: Build
               run: yarn build
 
-            - name: Disable postinstall script
-              run: npx pinst --disable
+            - name: Remove postinstall script
+              run: npm pkg delete scripts.postinstall
 
             - name: Publish to npm
               run: npm publish --provenance

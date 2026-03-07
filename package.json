@@ -22,9 +22,7 @@
         "client"
     ],
     "scripts": {
-        "postinstall": "husky install",
-        "prepack": "pinst --disable && yarn build",
-        "postpack": "pinst --enable",
+        "postinstall": "husky",
         "format:check": "prettier --check .",
         "lint": "eslint .",
         "test": "vitest",
@@ -76,7 +74,6 @@
         "globals": "^16.5.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.2.7",
-        "pinst": "^3.0.0",
         "prettier": "3.8.1",
         "rollup": "^4.59.0",
         "rollup-plugin-visualizer": "^7.0.0",
