@@ -42,5 +42,8 @@ jobs:
             - name: Build
               run: yarn build
 
+            - name: Disable postinstall script
+              run: npx pinst --disable
+
             - name: Publish to npm
               run: npm publish --provenance
