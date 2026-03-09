@@ -56,7 +56,7 @@ export type EmailAddress = {
     /**
      * The addr-spec of the mailbox {@link https://www.rfc-editor.org/rfc/rfc5322.html RFC 5322}.
      */
-    value: string;
+    email: string;
 };
 
 /**
@@ -558,7 +558,7 @@ export type EmailImport = {
     /**
      * (default: {}) The keywords to apply to the Email.
      */
-    keywords?: Record<string, boolean>;
+    keywords?: Record<string, true>;
 
     /**
      * (default: time of most recent Received header, or time of import on server

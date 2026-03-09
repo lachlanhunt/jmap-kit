@@ -107,8 +107,8 @@ Identity.request.set({
         k1: {
             email: "user@example.com",
             name: "Test User",
-            replyTo: [{ name: "Test", value: "reply@example.com" }],
-            bcc: [{ value: "bcc@example.com" }],
+            replyTo: [{ name: "Test", email: "reply@example.com" }],
+            bcc: [{ email: "bcc@example.com" }],
             textSignature: "-- \nSent from JMAP",
             htmlSignature: "<p>Sent from JMAP</p>",
         },

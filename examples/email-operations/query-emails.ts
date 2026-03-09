@@ -75,7 +75,7 @@ await response.methodResponses.dispatch({
         console.table(
             emails.map((e) => {
                 const from = e.from?.[0];
-                const fromStr = from ? (from.name ? `${from.name} <${from.value}>` : from.value) : "(unknown)";
+                const fromStr = from ? (from.name ? `${from.name} <${from.email}>` : from.email) : "(unknown)";
 
                 return {
                     subject: e.subject ?? "(no subject)",
