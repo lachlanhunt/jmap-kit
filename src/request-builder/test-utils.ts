@@ -143,6 +143,7 @@ export function createMockClient(
         withHeaders: vi.fn().mockReturnThis(),
         withLogger: vi.fn().mockReturnThis(),
         withEmitter: vi.fn().mockReturnThis(),
+        withAutoReconnect: vi.fn().mockReturnThis(),
 
         // File operations
         downloadFile: vi.fn(),

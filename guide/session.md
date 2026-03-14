@@ -151,3 +151,34 @@ client.withEmitter((name, payload) => {
 ```
 
 When you receive this event, you should reconnect to fetch the updated session. See [Customisation](customisation.md) for more on the event emitter.
+
+### Automatic reconnection
+
+Instead of handling the `"session-stale"` event manually, you can enable automatic reconnection. When enabled, the client calls `connect()` itself whenever session staleness is detected:
+
+```typescript
+const client = new JMAPClient(transport, {
+    hostname: "api.example.com",
+    autoReconnect: true,
+});
+```
+
+Or enable it at any time using the chainable method:
+
+```typescript
+client.withAutoReconnect();
+```
+
+When auto-reconnect triggers:
+
+- The current request's response is returned normally — the data is still valid.
+- The `"session-stale"` event is still emitted before reconnection starts.
+- New requests arriving during reconnection queue automatically and wait for the fresh session.
+- If reconnection fails, the error is logged but not propagated to the caller.
+- Multiple concurrent requests detecting staleness coalesce into a single reconnection attempt.
+
+To disable auto-reconnect after enabling it:
+
+```typescript
+client.withAutoReconnect(false);
+```
